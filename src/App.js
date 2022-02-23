@@ -19,6 +19,7 @@ function App() {
                 <Route path="/history" element={<HistoryPage />} />
                 <Route path="/museum" element={<MuseumPage />} />
                 <Route path="/friends" element={<FriendsPage />} />
+                <Route path="*" element={<Navigate to="/profile" />} />
             </Routes>
         </Router>
     );
