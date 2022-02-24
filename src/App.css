@@ -1,1 +1,12 @@
-
+.activeLink {
+    background-color: darkslategray;
+    color: white;
+}
+.link {
+    color: darkslategray;
+}
+.links,
+.activeLink {
+    border: 1px solid black;
+    height: 10px;
+}

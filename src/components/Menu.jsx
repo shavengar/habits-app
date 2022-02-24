@@ -4,13 +4,48 @@ import { NavLink } from "react-router-dom";
 const Menu = () => {
     return (
         <nav>
-            <NavLink to="login">Login</NavLink>
-            <NavLink to="profile">Profile</NavLink>
-            <NavLink to="create">Create Challenge</NavLink>
-            <NavLink to="challenge">Challenge</NavLink>
-            <NavLink to="history">History</NavLink>
-            <NavLink to="museum">Museum</NavLink>
-            <NavLink to="friends">Friends</NavLink>
+            <NavLink
+                className={({ isActive }) => (isActive ? "activeLink" : "link")}
+                to="login"
+            >
+                Login
+            </NavLink>
+            <NavLink
+                className={({ isActive }) => (isActive ? "activeLink" : "link")}
+                to="profile"
+            >
+                Profile
+            </NavLink>
+            <NavLink
+                className={({ isActive }) => (isActive ? "activeLink" : "link")}
+                to="create"
+            >
+                Create Challenge
+            </NavLink>
+            <NavLink
+                className={({ isActive }) => (isActive ? "activeLink" : "link")}
+                to="challenge"
+            >
+                Challenge
+            </NavLink>
+            <NavLink
+                className={({ isActive }) => (isActive ? "activeLink" : "link")}
+                to="history"
+            >
+                History
+            </NavLink>
+            <NavLink
+                className={({ isActive }) => (isActive ? "activeLink" : "link")}
+                to="museum"
+            >
+                Museum
+            </NavLink>
+            <NavLink
+                className={({ isActive }) => (isActive ? "activeLink" : "link")}
+                to="friends"
+            >
+                Friends
+            </NavLink>
         </nav>
     );
 };
