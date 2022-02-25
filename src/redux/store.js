@@ -4,24 +4,24 @@ import rootReducer from "./reducers";
 const INITIAL_STATE = {
     user: null,
     challenge: {
-        habit = {
-            startDate: null, 
-            endDate: null, 
+        habit: {
+            startDate: null,
+            endDate: null,
             title: "",
             id: null,
-            completedDays: []
+            completedDays: [],
         },
-        completedDay = {
+        completedDay: {
             date: null,
-            image:{
-                url: null
+            image: {
+                url: null,
             },
             habitID: null,
         },
-        habits = [],
-        completedDays = [],
-        completedHabits = [],
-    }
+        habits: [],
+        completedDays: [],
+        completedHabits: [],
+    },
 };
 
 export default createStore(rootReducer, INITIAL_STATE);
