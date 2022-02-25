@@ -1,12 +1,13 @@
 import {
-    ADD_CHALLENGE, 
-    REMOVE_CHALLENGE, 
+    ADD_HABIT, 
+    REMOVE_HABIT, 
     ADD_COMPLETED_DAY, 
-    REMOVE_COMPLETED_DAY
+    REMOVE_COMPLETED_DAY,
+    COMPLETE_HABIT
 } from "../actions"
 
 const initialState = {
-    challenge = {
+    habit = {
         startDate: null, 
         endDate: null, 
         title: "",
@@ -18,26 +19,26 @@ const initialState = {
         image:{
             url: null
         },
-        challengeID: null,
+        habitID: null,
     },
-    challenges = [],
+    habits = [],
     completedDays = [],
-    completedChallenges = [],
+    completedHabits = [],
 }
 
 const challengeReducer = (state = initialState, action) => {
     switch(action.type){
-        case ADD_CHALLENGE:
-            return {...state, challenges: [...state.challenges, action.challenge]}
-        case REMOVE_CHALLENGE:
+        case ADD_HABIT:
+            return {...state, habits: [...state.habits, action.habit]}
+        case REMOVE_HABIT:
             return {
                 ...state, 
-                challenges: state.challenges.filter((challenge) => challenge.id !== action.id),
+                habits: state.habits.filter((habit) => habit.id !== action.id),
             };
-        case COMPLETE_CHALLENGE:
+        case COMPLETE_HABIT:
             return {
                 ...state,
-                completedChallenges: [...state.completedChallenges, state.challenges.filter((challenge) => challenge.id === action.id)],
+                completedHabits: [...state.completedHabits, state.habits.filter((habit) => habit.id === action.id)],
             };
         case ADD_COMPLETED_DAY:
             return {
@@ -47,7 +48,7 @@ const challengeReducer = (state = initialState, action) => {
         case REMOVE_COMPLETED_DAY:
             return {
                 ...state,
-                completedDays: state.completedDays.filter((completedDay) => completedDay.challengeID !== action.challengeID)
+                completedDays: state.completedDays.filter((completedDay) => completedDay.habitID !== action.habitID)
             }
         default:
             return state;
