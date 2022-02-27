@@ -95,3 +95,7 @@ Derived State: - success rating(number)
 ### Date NPM
 
 -   Day.js
+
+let x= { habit: { startDate: null, endDate: null, title: "", id: null,
+completedDays: [], completed: false }, completedDay: { date: null, image: { url:
+null, }, habitID: null, }, }
