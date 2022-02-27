@@ -11,7 +11,7 @@ const CreateNewPage = ({ addProject }) => {
 
     const createNew = () => {
         let project = {
-            projectName: titleInput.current.value,
+            title: titleInput.current.value,
             dueDate: projectDate,
             id: nextID,
             completed: false,
