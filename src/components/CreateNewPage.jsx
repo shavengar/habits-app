@@ -36,6 +36,8 @@ const CreateNewPage = ({ addProject }) => {
             <button
                 onClick={() => {
                     createNew();
+                    setProjectDate(new Date());
+                    titleInput.current.value = "";
                 }}
             >
                 Create
