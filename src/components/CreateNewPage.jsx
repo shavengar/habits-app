@@ -1,10 +1,11 @@
 import React, { useState, useRef } from "react";
 import DatePicker from "react-datepicker";
+import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import { addProject } from "../redux/actions";
 import { connect } from "react-redux";
 
-const CreateNewPage = ({ addProject }) => {
+const CreateNewPage = ({ addProject, projects }) => {
     const titleInput = useRef(null);
     const [projectDate, setProjectDate] = useState(new Date());
     const [nextID, setNextID] = useState(0);
@@ -12,7 +13,7 @@ const CreateNewPage = ({ addProject }) => {
     const createNew = () => {
         let project = {
             title: titleInput.current.value,
-            dueDate: projectDate,
+            dueDate: format(projectDate, "EEEEEE, MM/dd/yyyy"),
             id: nextID,
             completed: false,
         };
@@ -38,6 +39,7 @@ const CreateNewPage = ({ addProject }) => {
                     createNew();
                     setProjectDate(new Date());
                     titleInput.current.value = "";
+                    console.log(projects);
                 }}
             >
                 Create
@@ -47,7 +49,7 @@ const CreateNewPage = ({ addProject }) => {
 };
 
 const mapStateToProps = (state) => {
-    return {};
+    return { projects: state.challenge.projects };
 };
 const mapDispatchToProps = { addProject };
 
