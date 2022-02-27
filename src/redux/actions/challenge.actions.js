@@ -1,28 +1,16 @@
-export const ADD_HABIT = "Add Habit";
-export const REMOVE_HABIT = "Remove Habit";
-export const COMPLETE_HABIT = "Complete Habit";
-export const ADD_COMPLETED_DAY = "Add Completed Day";
-export const REMOVE_COMPLETED_DAY = "Remove Completed Day";
+export const ADD_PROJECT = "Add Project";
+export const REMOVE_PROJECT = "Remove Project";
+export const COMPLETE_PROJECT = "Complete Project";
 
-export const addHabit = (startDate, endDate, title, id, completedDays) => {
+export const addProject = (project) => {
     return {
-        type: ADD_HABIT,
-        startDate,
-        endDate,
-        title,
-        id,
-        completedDays,
+        type: ADD_PROJECT,
+        project: project,
     };
 };
-export const removeHabit = (id) => {
-    return { type: REMOVE_HABIT, id };
+export const removeProject = (id) => {
+    return { type: REMOVE_PROJECT, id };
 };
-export const completeHabit = (id) => {
-    return { type: COMPLETE_HABIT, id };
-};
-export const addCompletedDay = (date, image, habitID) => {
-    return { type: ADD_COMPLETED_DAY, date, image, habitID };
-};
-export const removeCompletedDay = (date, habitID) => {
-    return { type: REMOVE_COMPLETED_DAY, date, habitID };
+export const completeProject = (id) => {
+    return { type: COMPLETE_PROJECT, id };
 };

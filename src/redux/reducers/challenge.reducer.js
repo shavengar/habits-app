@@ -1,59 +1,33 @@
-import {
-    ADD_HABIT,
-    REMOVE_HABIT,
-    ADD_COMPLETED_DAY,
-    REMOVE_COMPLETED_DAY,
-    COMPLETE_HABIT,
-} from "../actions";
+import { ADD_PROJECT, REMOVE_PROJECT, COMPLETE_PROJECT } from "../actions";
 
 const initialState = {
-    habit: {
-        startDate: null,
-        endDate: null,
-        title: "",
-        id: null,
-        completedDays: [],
-    },
-    completedDay: {
-        date: null,
-        image: {
-            url: null,
-        },
-        habitID: null,
-    },
-    habits: [],
-    completedDays: [],
-    completedHabits: [],
+    projects: [],
+    completedProjects: [],
 };
 
 const challengeReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_HABIT:
-            return { ...state, habits: [...state.habits, action.habit] };
-        case REMOVE_HABIT:
+        case ADD_PROJECT:
             return {
                 ...state,
-                habits: state.habits.filter((habit) => habit.id !== action.id),
+                projects: [...state.projects, action.project],
             };
-        case COMPLETE_HABIT:
+        case REMOVE_PROJECT:
             return {
                 ...state,
-                completedHabits: [
-                    ...state.completedHabits,
-                    state.habits.filter((habit) => habit.id === action.id),
-                ],
-            };
-        case ADD_COMPLETED_DAY:
-            return {
-                ...state,
-                completedDays: [...state, action.completedDay],
-            };
-        case REMOVE_COMPLETED_DAY:
-            return {
-                ...state,
-                completedDays: state.completedDays.filter(
-                    (completedDay) => completedDay.habitID !== action.habitID
+                projects: state.projects.filter(
+                    (project) => project.id !== action.id
                 ),
+            };
+        case COMPLETE_PROJECT:
+            return {
+                ...state,
+                completedProjects: [
+                    ...state.completedProjects,
+                    state.projects.filter(
+                        (project) => project.id === action.id
+                    ),
+                ],
             };
         default:
             return state;
