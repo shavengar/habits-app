@@ -4,24 +4,20 @@ import "react-datepicker/dist/react-datepicker.css";
 import { addProject } from "../redux/actions";
 import { connect } from "react-redux";
 
-const CreateNewPage = ({ addProject, projects }) => {
+const CreateNewPage = ({ addProject }) => {
     const titleInput = useRef(null);
-    const [title, setTitle] = useState("");
     const [projectDate, setProjectDate] = useState(new Date());
     const [nextID, setNextID] = useState(0);
 
-    const createNew = (props) => {
+    const createNew = () => {
         let project = {
-            projectName: title,
+            projectName: titleInput.current.value,
             dueDate: projectDate,
             id: nextID,
             completed: false,
         };
-        return (
-            setTitle(titleInput.current.value),
-            setNextID((nextID) => nextID + 1),
-            addProject(project)
-        );
+        setNextID((nextID) => nextID + 1);
+        addProject(project);
     };
 
     return (
@@ -40,7 +36,6 @@ const CreateNewPage = ({ addProject, projects }) => {
             <button
                 onClick={() => {
                     createNew();
-                    console.log(projects);
                 }}
             >
                 Create
@@ -50,9 +45,7 @@ const CreateNewPage = ({ addProject, projects }) => {
 };
 
 const mapStateToProps = (state) => {
-    return {
-        projects: state.challenge.projects,
-    };
+    return {};
 };
 const mapDispatchToProps = { addProject };
 
