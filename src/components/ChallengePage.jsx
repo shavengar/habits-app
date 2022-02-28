@@ -5,14 +5,7 @@ import ChallengeDisplay from "./ChallengeDisplay";
 
 const ChallengePage = ({ projects, removeProject, completeProject }) => {
     const markCompleted = (id) => {
-        completeProject((curr) => {
-            curr.map((project) => {
-                if (id === project.id) {
-                    return { ...project, completed: !project.completed };
-                }
-                return project;
-            });
-        });
+        completeProject(id);
     };
     return (
         <div>
