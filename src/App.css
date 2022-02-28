@@ -10,3 +10,19 @@
     border: 1px solid black;
     height: 10px;
 }
+.projects {
+    flex-direction: column;
+    display: flex;
+    justify-content: space-around;
+}
+.incompleteProject {
+    background-color: darksalmon;
+}
+.completeProject {
+    background-color: darkseagreen;
+}
+.incompleteProject,
+.completeProject {
+    flex-basis: 50%;
+    height: 50px;
+}
