@@ -22,12 +22,15 @@ const challengeReducer = (state = initialState, action) => {
         case COMPLETE_PROJECT:
             return {
                 ...state,
-                completedProjects: [
-                    ...state.completedProjects,
-                    state.projects.filter(
-                        (project) => project.id === action.id
-                    ),
-                ],
+                projects: state.projects.map((project) => {
+                    if (action.id === project.id) {
+                        return {
+                            ...project,
+                            completed: !project.completed,
+                        };
+                    }
+                    return project;
+                }),
             };
         default:
             return state;
