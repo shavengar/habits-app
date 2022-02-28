@@ -1,12 +1,6 @@
 import React from "react";
 
-const ChallengeDisplay = ({
-    project,
-    completedProjects,
-    markCompleted,
-    removeProject,
-    completeProject,
-}) => {
+const ChallengeDisplay = ({ project, markCompleted }) => {
     return (
         <div className="projects">
             <div
@@ -21,7 +15,6 @@ const ChallengeDisplay = ({
                     type="checkbox"
                     onChange={() => {
                         markCompleted(project.id);
-                        console.log(completedProjects);
                     }}
                 />
             </div>
