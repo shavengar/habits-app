@@ -68,3 +68,5 @@ async function signup(res, username, password) {
         });
     }
 }
+
+module.exports = { login, signup };
