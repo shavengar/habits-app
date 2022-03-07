@@ -1,8 +1,9 @@
 const query = require("../config/mysql.config");
+const { addArt } = require("./art.models");
 
 async function addHabit(res, habit) {
     try {
-        const { insert_id } = await query("INSERT INTO habits SET ?", [habit]);
+        let { insert_id } = await query("INSERT INTO habits SET ?", [habit]);
         return res.send({
             data: insert_id,
             success: true,
@@ -34,6 +35,27 @@ async function removeHabit(res, id) {
     }
 }
 
+async function markComplete(res, id) {
+    try {
+        await query(
+            "UPDATE habits SET habits.completed = 1 WHERE habit.id = ?",
+            [id]
+        );
+        addArt(res, req.body);
+        return res.send({
+            data: req.body,
+            success: true,
+            error: null,
+        });
+    } catch (err) {
+        return res.send({
+            data: null,
+            success: true,
+            error: "Something went wrong, please try again later.",
+        });
+    }
+}
+
 async function getHabitsByUserId(res, userID) {
     try {
         const habits = await query("SELECT * FROM habits WHERE user_id = ?", [
@@ -53,4 +75,4 @@ async function getHabitsByUserId(res, userID) {
     }
 }
 
-module.exports = { addHabit, removeHabit, getHabitsByUserId };
+module.exports = { addHabit, removeHabit, markComplete, getHabitsByUserId };
