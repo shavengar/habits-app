@@ -1,11 +1,10 @@
 import React, { useCallback } from "react";
-import { post } from "../../server/routes/auth.routes";
 const axios = require("axios");
 
 export default function useAPI() {
-    const makeAPICall = useCallback(async (url, config) => {
+    const makeAPICall = useCallback(async (config) => {
         try {
-            const res = await axios.get(url, config);
+            const res = await axios(config);
             return res;
         } catch (err) {
             console.log(err);
@@ -19,11 +18,10 @@ export default function useAPI() {
 
     const login = useCallback(
         async (username, password) => {
-            return await makeAPICall("api/users/login", {
-                method: "POST",
-                body: res.data,
-                headers: res.headers["content-type"],
-                // or would this just be res.config?
+            return await makeAPICall({
+                url: "api/users/login",
+                method: "post",
+                data: { username, password },
             });
         },
         [makeAPICall]
@@ -31,49 +29,77 @@ export default function useAPI() {
 
     const signup = useCallback(
         async (username, password) => {
-            return await makeAPICall("api/users/signup", res.config);
+            return await makeAPICall({
+                url: "api/users/signup",
+                method: "put",
+                data: { username, password },
+            });
         },
         [makeAPICall]
     );
 
     const addHabit = useCallback(
         async (habit) => {
-            return await makeAPICall("api/habits/add", res.config);
+            return await makeAPICall({
+                url: "api/habits/add",
+                method: "put",
+                data: { habit },
+            });
         },
         [makeAPICall]
     );
 
     const removeHabit = useCallback(
         async (id) => {
-            return await makeAPICall(`api/habits/remove/${id}`, res.config);
+            return await makeAPICall({
+                url: `api/habits/remove/${id}`,
+                method: "delete",
+                data: { id },
+            });
         },
         [makeAPICall]
     );
 
     const markComplete = useCallback(
         async (id) => {
-            return await makeAPICall(`api/habits/complete/${id}`, res.config);
+            return await makeAPICall({
+                url: `api/habits/complete/${id}`,
+                method: "patch",
+                data: { id },
+            });
         },
         [makeAPICall]
     );
 
     const getHabitsByUserId = useCallback(
         async (user_id) => {
-            return await makeAPICall(`api/habits/${user_id}`, res.config);
+            return await makeAPICall({
+                url: `api/habits/${user_id}`,
+                method: "get",
+                data: { user_id },
+            });
         },
         [makeAPICall]
     );
 
     const removeArt = useCallback(
         async (id) => {
-            return await makeAPICall(`api/art/${id}`, res.config);
+            return await makeAPICall({
+                url: `api/art/${id}`,
+                method: "delete",
+                data: { id },
+            });
         },
         [makeAPICall]
     );
 
     const getArtByHabitId = useCallback(
         async (habit_id) => {
-            return await makeAPICall(`api/art/${habit_id}`, res.config);
+            return await makeAPICall({
+                url: `api/art/${habit_id}`,
+                method: "get",
+                data: { habit_id },
+            });
         },
         [makeAPICall]
     );
