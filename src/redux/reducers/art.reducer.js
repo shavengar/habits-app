@@ -15,7 +15,7 @@ const artReducer = (state = initialState, action) => {
             return {
                 ...state,
                 artCollection: state.artCollection.filter(
-                    (art) => art.id !== action.id
+                    (art) => art.art_id !== action.art_id
                 ),
             };
         case CLEAR_ART:
@@ -23,6 +23,8 @@ const artReducer = (state = initialState, action) => {
                 ...state,
                 artCollection: [],
             };
+        default:
+            return state;
     }
 };
 
