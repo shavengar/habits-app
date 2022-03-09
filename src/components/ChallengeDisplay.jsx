@@ -9,7 +9,7 @@ const ChallengeDisplay = ({ project, markCompleted }) => {
                 }
             >
                 <h3>{project.title}</h3>
-                <p>{project.dueDate}</p>
+                <p>{project.due_date}</p>
                 <label>Completed:</label>
                 <input
                     type="checkbox"

@@ -43,7 +43,7 @@ export default function useAPI() {
             return await makeAPICall({
                 url: "api/habits/add",
                 method: "put",
-                data: { habit },
+                data: habit,
             });
         },
         [makeAPICall]

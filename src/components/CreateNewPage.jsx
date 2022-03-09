@@ -1,25 +1,29 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import DatePicker from "react-datepicker";
 import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import { addProject } from "../redux/actions";
 import { connect } from "react-redux";
+import useAPI from "../hooks/useAPI";
 
-const CreateNewPage = ({ addProject, projects }) => {
+const CreateNewPage = ({ addProject, user }) => {
+    const { addHabit } = useAPI();
     const titleInput = useRef(null);
     const [projectDate, setProjectDate] = useState(new Date());
-    const [nextID, setNextID] = useState(0);
 
-    const createNew = () => {
+    const createNew = useCallback(async () => {
         let project = {
             title: titleInput.current.value,
-            dueDate: format(projectDate, "EEEEEE, MM/dd/yyyy"),
-            id: nextID,
+            due_date: format(projectDate, "EEEEEE, MM/dd/yyyy"),
             completed: false,
         };
-        setNextID((nextID) => nextID + 1);
-        addProject(project);
-    };
+        const res = await addHabit({ ...project, user_id: user.id });
+        if (!res.data.success) {
+            console.log(res.data.error);
+        } else {
+            addProject(res.data.data);
+        }
+    }, []);
 
     return (
         <div>
@@ -39,7 +43,6 @@ const CreateNewPage = ({ addProject, projects }) => {
                     createNew();
                     setProjectDate(new Date());
                     titleInput.current.value = "";
-                    console.log(projects);
                 }}
             >
                 Create
@@ -49,7 +52,7 @@ const CreateNewPage = ({ addProject, projects }) => {
 };
 
 const mapStateToProps = (state) => {
-    return { projects: state.challenge.projects };
+    return { user: state.user };
 };
 const mapDispatchToProps = { addProject };
 
