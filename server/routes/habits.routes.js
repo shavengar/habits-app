@@ -21,7 +21,7 @@ router.put("/add", (req, res) => {
 });
 
 router.delete("/remove/:id", (req, res) => {
-    removeHabit(res, req.params.id);
+    removeHabit(res, req.params.id, req.user.id);
 });
 
 router.patch("/complete/:id", (req, res) => {
