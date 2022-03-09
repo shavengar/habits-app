@@ -4,11 +4,8 @@ const { addArt } = require("./art.models");
 async function addHabit(res, habit) {
     try {
         let { insertId } = await query("INSERT INTO habits SET ?", [habit]);
-        let newHabit = await query("SELECT * FROM habits WHERE id = ?", [
-            insertId,
-        ]);
         return res.send({
-            data: newHabit,
+            data: { ...habit, id: insertId },
             success: true,
             error: null,
         });
