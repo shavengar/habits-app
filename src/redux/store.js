@@ -7,6 +7,9 @@ const INITIAL_STATE = {
         projects: [],
         completedProjects: [],
     },
+    art: {
+        artCollection: [],
+    },
 };
 
 export default createStore(rootReducer, INITIAL_STATE);
