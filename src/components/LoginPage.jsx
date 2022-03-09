@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { setUser } from "../redux/actions";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import useAPI from "../hooks/useAPI";
 import { connect } from "react-redux";
 
 const LoginPage = ({ setUser }) => {
+    const { login } = useAPI();
     const usernameInput = useRef(null);
     const passwordInput = useRef(null);
     let navigate = useNavigate();
 
-    const handleLogin = (props) => {
+    const handleLogin = useCallback(async () => {
         const username = usernameInput.current.value;
         const password = passwordInput.current.value;
         if (
@@ -20,9 +22,14 @@ const LoginPage = ({ setUser }) => {
         ) {
             return;
         }
-        setUser(username);
-        navigate("/profile");
-    };
+        const res = await login(username, password);
+        if (!res.data.success) {
+            console.log(res.data.error);
+        } else {
+            setUser(res.data.data);
+            navigate("/profile");
+        }
+    }, []);
 
     return (
         <div>
