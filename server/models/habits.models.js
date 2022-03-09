@@ -3,13 +3,14 @@ const { addArt } = require("./art.models");
 
 async function addHabit(res, habit) {
     try {
-        let { insert_id } = await query("INSERT INTO habits SET ?", [habit]);
+        let { insertId } = await query("INSERT INTO habits SET ?", [habit]);
         return res.send({
-            data: insert_id,
+            data: insertId,
             success: true,
             error: null,
         });
-    } catch (error) {
+    } catch (err) {
+        console.log(err);
         return res.send({
             data: null,
             success: false,
@@ -20,7 +21,7 @@ async function addHabit(res, habit) {
 
 async function removeHabit(res, id) {
     try {
-        await query("DELETE FROM habits WHERE habit.id = ?", [id]);
+        await query("DELETE FROM habits WHERE habits.id = ?", [id]);
         return res.send({
             data: "Removed successfully.",
             success: true,
@@ -38,16 +39,12 @@ async function removeHabit(res, id) {
 async function markComplete(res, id) {
     try {
         await query(
-            "UPDATE habits SET habits.completed = 1 WHERE habit.id = ?",
+            "UPDATE habits SET habits.completed = 1 WHERE habits.id = ?",
             [id]
         );
-        addArt(res, req.body);
-        return res.send({
-            data: req.body,
-            success: true,
-            error: null,
-        });
+        return addArt(res, id);
     } catch (err) {
+        console.log(err);
         return res.send({
             data: null,
             success: true,
@@ -58,9 +55,10 @@ async function markComplete(res, id) {
 
 async function getHabitsByUserId(res, userID) {
     try {
-        const habits = await query("SELECT * FROM habits WHERE user_id = ?", [
-            userID,
-        ]);
+        const habits = await query(
+            "SELECT * FROM habits WHERE habits.user_id = ?",
+            [userID]
+        );
         return res.send({
             data: habits,
             success: true,

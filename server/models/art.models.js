@@ -1,17 +1,19 @@
 const query = require("../config/mysql.config");
 const axios = require("axios");
 
-async function addArt(res) {
+async function addArt(res, habit_id) {
     try {
         const baseURL =
             "https://www.rijksmuseum.nl/api/en/collection?key=L93w4I9H&imgonly=true&ps=100&toppieces=true";
-        let randomIndex = math.Floor(math.Random() * (100 - 1) + 1);
+        let randomIndex = Math.floor(Math.random() * (100 - 1) + 1);
         const response = await axios.get(baseURL);
-        const art = response.artObjects.at(randomIndex).map((val) => ({
-            id: val.id,
-            title: val.longTitle,
-            img: val.webImage.url,
-        }));
+        const randArt = response.data.artObjects[randomIndex];
+        const art = {
+            art_id: randArt.id,
+            title: randArt.longTitle,
+            url: randArt.webImage.url,
+            habit_id,
+        };
         if (!art) {
             return res.send({
                 data: null,
@@ -21,11 +23,12 @@ async function addArt(res) {
         }
         let { insertId } = await query("INSERT INTO art SET ?", [art]);
         return res.send({
-            data: insertId,
+            data: { ...art, id: insertId },
             success: true,
             error: null,
         });
     } catch (err) {
+        console.log(err);
         return res.send({
             data: null,
             success: false,
@@ -56,6 +59,11 @@ async function getArtByHabitId(res, habitID) {
         const art = await query("SELECT * FROM art WHERE habit_id = ?", [
             habitID,
         ]);
+        return res.send({
+            data: art,
+            success: true,
+            error: null,
+        });
     } catch (err) {
         return res.send({
             data: null,

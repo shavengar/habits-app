@@ -1,11 +1,10 @@
 const query = require("../config/mysql.config");
-
 const bcrypt = require("bcrypt");
 
 async function login(res, username, password) {
     try {
         const [user] = await query(
-            "SELECT username FROM USERS WHERE users.username === ?",
+            "SELECT * FROM USERS WHERE users.username = ?",
             [username]
         );
         if (!user) {
@@ -15,7 +14,7 @@ async function login(res, username, password) {
                 error: "Invalid username or password.",
             });
         }
-        const match = bcrypt.compare(password, user.password);
+        const match = await bcrypt.compare(password, user.password);
         if (!match) {
             return res.send({
                 data: null,
@@ -29,6 +28,7 @@ async function login(res, username, password) {
             error: null,
         });
     } catch (err) {
+        console.log(err);
         return res.send({
             data: null,
             success: false,
@@ -50,7 +50,7 @@ async function signup(res, username, password) {
                 error: "Username already in use.",
             });
         }
-        const hash = bcrypt.hash(password, 10);
+        const hash = await bcrypt.hash(password, 10);
         await query("INSERT INTO users (username, password) VALUES (?,?)", [
             username,
             hash,

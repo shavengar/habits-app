@@ -1,17 +1,22 @@
-const express = ("express");
+const express = require("express");
 const router = express.Router();
-const { addHabit, removeHabit, markComplete, getHabitsByUserId };
+const {
+    addHabit,
+    removeHabit,
+    markComplete,
+    getHabitsByUserId,
+} = require("../models/habits.models");
 
 router.put("/add", (req, res) => {
-    const {user_id, title, completed, due_date} = req.body;
-    if (!user_id || !title || !due_date){
+    const { user_id, title, completed, due_date } = req.body;
+    if (!user_id || !title || !due_date) {
         return res.send({
             data: null,
             success: false,
             error: "Invalid data provided.",
-        })
+        });
     }
-    const habit = {user_id, title, completed, due_date}
+    const habit = { user_id, title, completed, due_date };
     return addHabit(res, habit);
 });
 
@@ -25,4 +30,6 @@ router.patch("/complete/:id", (req, res) => {
 
 router.get("/:user_id", (req, res) => {
     getHabitsByUserId(res, req.params.user_id);
-})
+});
+
+module.exports = router;
