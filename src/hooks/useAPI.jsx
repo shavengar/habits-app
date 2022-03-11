@@ -94,7 +94,6 @@ export default function useAPI() {
 
     const getArtByHabitId = useCallback(
         async (userHabits) => {
-            console.log(userHabits);
             return await makeAPICall({
                 url: "api/art/",
                 method: "post",

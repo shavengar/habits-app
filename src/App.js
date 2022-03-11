@@ -33,7 +33,6 @@ function App({ user, setProjects, setArtCollection }) {
                     setProjects(res.data.data);
                     const userHabits = res.data.data.map((habit) => habit.id);
                     const userArt = await getArtByHabitId(userHabits);
-                    console.log(userArt);
                     if (!userArt.data.success) {
                         console.log(userArt.data.error);
                     } else {
