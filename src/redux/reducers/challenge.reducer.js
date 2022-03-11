@@ -1,4 +1,9 @@
-import { ADD_PROJECT, REMOVE_PROJECT, COMPLETE_PROJECT } from "../actions";
+import {
+    ADD_PROJECT,
+    REMOVE_PROJECT,
+    COMPLETE_PROJECT,
+    SET_PROJECTS,
+} from "../actions";
 
 const initialState = {
     projects: [],
@@ -32,6 +37,8 @@ const challengeReducer = (state = initialState, action) => {
                     return project;
                 }),
             };
+        case SET_PROJECTS:
+            return { ...state, projects: action.projects };
         default:
             return state;
     }

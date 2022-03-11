@@ -27,7 +27,6 @@ const LoginPage = ({ setUser }) => {
             console.log(res.data.error);
         } else {
             setUser(res.data.data);
-
             navigate("/profile");
         }
     }, []);

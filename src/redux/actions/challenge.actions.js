@@ -1,6 +1,7 @@
 export const ADD_PROJECT = "Add Project";
 export const REMOVE_PROJECT = "Remove Project";
 export const COMPLETE_PROJECT = "Complete Project";
+export const SET_PROJECTS = "Set Projects";
 
 export const addProject = (project) => {
     return {
@@ -13,4 +14,7 @@ export const removeProject = (id) => {
 };
 export const completeProject = (id) => {
     return { type: COMPLETE_PROJECT, id };
+};
+export const setProjects = (projects) => {
+    return { type: SET_PROJECTS, projects };
 };
