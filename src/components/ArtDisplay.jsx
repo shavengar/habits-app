@@ -1,7 +1,6 @@
 import React from "react";
 
 const ArtDisplay = ({ art }) => {
-    console.log(art);
     return (
         <div>
             <div>

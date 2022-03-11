@@ -21,9 +21,9 @@ const MuseumPage = ({ user, artCollection }) => {
     return (
         <div>
             <h2>Art Collection:</h2>
-            {artCollection.map((val) => {
-                <ArtDisplay key={val.id} art={val} />;
-            })}
+            {artCollection.map((val) => (
+                <ArtDisplay key={val.id} art={val} />
+            ))}
         </div>
     );
 };
