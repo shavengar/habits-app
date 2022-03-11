@@ -6,8 +6,8 @@ router.delete("/remove/:id", (req, res) => {
     removeArt(res, req.params.id);
 });
 
-router.get("/:habit_id", (req, res) => {
-    getArtByHabitId(res, req.params.habit_id);
+router.post("/", (req, res) => {
+    getArtByHabitId(res, req.body);
 });
 
 module.exports = router;

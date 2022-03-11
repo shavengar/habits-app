@@ -5,6 +5,8 @@ import {
     Route,
     Navigate,
 } from "react-router-dom";
+import { connect } from "react-redux";
+import useAPI from "./hooks/useAPI";
 import Menu from "./components/Menu";
 import LoginPage from "./components/LoginPage";
 import ProfilePage from "./components/ProfilePage";
@@ -14,8 +16,34 @@ import HistoryPage from "./components/HistoryPage";
 import MuseumPage from "./components/MuseumPage";
 import FriendsPage from "./components/FriendsPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { useEffect } from "react";
+import { setArtCollection } from "./redux/actions/art.actions";
+import { setProjects } from "./redux/actions/challenge.actions";
 
-function App() {
+function App({ user, setProjects, setArtCollection }) {
+    const { getHabitsByUserId } = useAPI();
+    const { getArtByHabitId } = useAPI();
+    useEffect(() => {
+        const loadUserInfo = async () => {
+            if (user) {
+                const res = await getHabitsByUserId(user.id);
+                if (!res.data.success) {
+                    return console.log(user.data.error);
+                } else {
+                    setProjects(res.data.data);
+                    const userHabits = res.data.data.map((habit) => habit.id);
+                    const userArt = await getArtByHabitId(userHabits);
+                    console.log(userArt);
+                    if (!userArt.data.success) {
+                        console.log(userArt.data.error);
+                    } else {
+                        setArtCollection(userArt.data.data);
+                    }
+                }
+            }
+        };
+        loadUserInfo();
+    }, [user]);
     return (
         <Router>
             <Menu />
@@ -89,4 +117,15 @@ function App() {
     );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+    };
+};
+
+const mapDispatchToProps = {
+    setArtCollection,
+    setProjects,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

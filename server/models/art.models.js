@@ -54,10 +54,11 @@ async function removeArt(res, id) {
     }
 }
 
-async function getArtByHabitId(res, habitID) {
+async function getArtByHabitId(res, userHabits) {
+    console.log(userHabits);
     try {
-        const art = await query("SELECT * FROM art WHERE habit_id = ?", [
-            habitID,
+        const art = await query("SELECT * FROM art WHERE art.habit_id IN (?)", [
+            userHabits,
         ]);
         return res.send({
             data: art,
