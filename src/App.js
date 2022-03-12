@@ -45,6 +45,7 @@ function App({ user, setProjects, setArtCollection }) {
     }, [user]);
     return (
         <Router>
+            <h1 className="headerFont banner">van Gogh Get Your Work Done</h1>
             <Menu />
             <Routes>
                 <Route

@@ -1,3 +1,13 @@
+.headerFont {
+    font-family: "Montserrat", sans-serif;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 30px;
+    margin: 0px;
+}
+.banner {
+    background-color: #f5dd90;
+}
 .activeLink {
     background-color: darkslategray;
     color: white;
@@ -25,4 +35,8 @@
 .completeProject {
     flex-basis: 50%;
     height: 50px;
+}
+
+.img {
+    height: 200px;
 }
