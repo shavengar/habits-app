@@ -4,6 +4,8 @@ import { completeProject } from "../redux/actions";
 import { addArt } from "../redux/actions";
 import ChallengeDisplay from "./ChallengeDisplay";
 import useAPI from "../hooks/useAPI";
+import NewChallenge from "./NewChallenge";
+import Box from "@mui/material/Box";
 
 const ChallengePage = ({ projects, completeProject, addArt }) => {
     const { markComplete } = useAPI();
@@ -17,15 +19,18 @@ const ChallengePage = ({ projects, completeProject, addArt }) => {
         }
     }, []);
     return (
-        <div>
+        <div className="content">
+            <NewChallenge />
             <h2>Challenges:</h2>
-            {projects.map((val) => (
-                <ChallengeDisplay
-                    key={val.id}
-                    project={val}
-                    markCompleted={markCompleted}
-                />
-            ))}
+            <Box sx={{ height: 475, overflowY: "scroll" }}>
+                {projects.map((val) => (
+                    <ChallengeDisplay
+                        key={val.id}
+                        project={val}
+                        markCompleted={markCompleted}
+                    />
+                ))}
+            </Box>
         </div>
     );
 };
