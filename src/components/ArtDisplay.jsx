@@ -1,13 +1,13 @@
 import React from "react";
+import ImageListItem from "@mui/material/ImageListItem";
+import ImageListItemBar from "@mui/material/ImageListItemBar";
 
 const ArtDisplay = ({ art }) => {
     return (
-        <div>
-            <div>
-                <img src={art.url} alt="artwork" />
-                <h3>{art.title}</h3>
-            </div>
-        </div>
+        <ImageListItem key={art.id}>
+            <img src={art.url} alt={art.long_title} />
+            <ImageListItemBar title={art.title} />
+        </ImageListItem>
     );
 };
 
