@@ -1,21 +1,27 @@
 import React, { useCallback } from "react";
 import { connect } from "react-redux";
-import { completeProject } from "../redux/actions";
+import { addCompleted } from "../redux/actions";
 import { addArt } from "../redux/actions";
 import ChallengeDisplay from "./ChallengeDisplay";
 import useAPI from "../hooks/useAPI";
 import NewChallenge from "./NewChallenge";
 import Box from "@mui/material/Box";
 
-const ChallengePage = ({ projects, completeProject, addArt }) => {
+const ChallengePage = ({
+    projects,
+    addCompleted,
+    addArt,
+    completedProjects,
+}) => {
     const { markComplete } = useAPI();
-    const markCompleted = useCallback(async (id) => {
-        const res = await markComplete(id);
+    const markCompleted = useCallback(async (project) => {
+        const res = await markComplete(project);
         if (!res.data.success) {
             console.log(res.data.error);
         } else {
-            completeProject(res.data.data);
+            addCompleted(project);
             addArt(res.data.data);
+            console.log(completedProjects);
         }
     }, []);
     return (
@@ -38,10 +44,11 @@ const ChallengePage = ({ projects, completeProject, addArt }) => {
 const mapStateToProps = (state) => {
     return {
         projects: state.challenge.projects,
+        completedProjects: state.challenge.completedProjects,
     };
 };
 const mapDispatchToProps = {
-    completeProject,
+    addCompleted,
     addArt,
 };
 
