@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { removeArt } from "../redux/actions";
 import useAPI from "../hooks/useAPI";
 import ArtDisplay from "./ArtDisplay";
+import ImageList from "@mui/material/ImageList";
 
 const MuseumPage = ({ user, artCollection }) => {
     const { deleteArt } = useAPI();
@@ -19,11 +20,15 @@ const MuseumPage = ({ user, artCollection }) => {
     );
 
     return (
-        <div>
+        <div className="content">
             <h2>Art Collection:</h2>
-            {artCollection.map((val) => (
-                <ArtDisplay key={val.id} art={val} />
-            ))}
+            <div>
+                <ImageList variant="masonry" cols={3} gap={8}>
+                    {artCollection.map((val) => (
+                        <ArtDisplay key={val.id} art={val} />
+                    ))}
+                </ImageList>
+            </div>
         </div>
     );
 };
