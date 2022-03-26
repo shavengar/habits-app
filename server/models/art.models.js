@@ -10,7 +10,8 @@ async function addArt(res, habit_id) {
         const randArt = response.data.artObjects[randomIndex];
         const art = {
             art_id: randArt.id,
-            title: randArt.longTitle,
+            title: randArt.title,
+            long_title: randArt.longTitle,
             url: randArt.webImage.url,
             habit_id,
         };
