@@ -1,8 +1,9 @@
 import {
     ADD_PROJECT,
     REMOVE_PROJECT,
-    COMPLETE_PROJECT,
+    ADD_COMPLETED,
     SET_PROJECTS,
+    REMOVE_COMPLETED,
 } from "../actions";
 
 const initialState = {
@@ -24,21 +25,23 @@ const challengeReducer = (state = initialState, action) => {
                     (project) => project.id !== action.id
                 ),
             };
-        case COMPLETE_PROJECT:
+        case ADD_COMPLETED:
             return {
                 ...state,
-                projects: state.projects.map((project) => {
-                    if (action.id === project.id) {
-                        return {
-                            ...project,
-                            completed: !project.completed,
-                        };
-                    }
-                    return project;
-                }),
+                projects: state.projects.filter(
+                    (project) => project.id !== action.project.id
+                ),
+                completedProjects: [...state.completedProjects, action.project],
+            };
+        case REMOVE_COMPLETED:
+            return {
+                ...state,
+                completedProjects: state.completedProjects.filter(
+                    (project) => project.id !== action.id
+                ),
             };
         case SET_PROJECTS:
-            return { ...state, projects: action.projects };
+            return { ...state, projects: action.projects};
         default:
             return state;
     }
