@@ -10,7 +10,6 @@ import useAPI from "./hooks/useAPI";
 import Menu from "./components/Menu";
 import LoginPage from "./components/LoginPage";
 import ProfilePage from "./components/ProfilePage";
-import CreateNewPage from "./components/CreateNewPage";
 import ChallengePage from "./components/ChallengePage";
 import HistoryPage from "./components/HistoryPage";
 import MuseumPage from "./components/MuseumPage";
@@ -30,6 +29,10 @@ function App({ user, setProjects, setArtCollection }) {
                 if (!res.data.success) {
                     return console.log(user.data.error);
                 } else {
+                    let proj = res.data.data;
+                    proj = proj.filter((project) => !project.completed);
+                    console.log(proj);
+
                     setProjects(res.data.data);
                     const userHabits = res.data.data.map((habit) => habit.id);
                     const userArt = await getArtByHabitId(userHabits);
@@ -61,14 +64,6 @@ function App({ user, setProjects, setArtCollection }) {
                     element={
                         <ProtectedRoute isPrivate={true}>
                             <ProfilePage />
-                        </ProtectedRoute>
-                    }
-                />
-                <Route
-                    path="/create"
-                    element={
-                        <ProtectedRoute isPrivate={true}>
-                            <CreateNewPage />
                         </ProtectedRoute>
                     }
                 />
