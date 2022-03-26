@@ -27,7 +27,7 @@ const NewChallenge = ({ addProject, user }) => {
 
     return (
         <div>
-            <h3>New Project:</h3>
+            <h2>New Project:</h2>
             <label htmlFor="projectLabel">Project:</label>
             <br />
             <input id="projectLabel" type="text" ref={titleInput} />
