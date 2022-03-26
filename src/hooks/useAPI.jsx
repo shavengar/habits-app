@@ -9,9 +9,11 @@ export default function useAPI() {
         } catch (err) {
             console.log(err);
             return {
-                data: null,
-                success: false,
-                error: " Something went wrong.",
+                data: {
+                    data: null,
+                    success: false,
+                    error: " Something went wrong.",
+                },
             };
         }
     }, []);
