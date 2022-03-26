@@ -12,18 +12,6 @@ const Menu = () => {
             </NavLink>
             <NavLink
                 className={({ isActive }) => (isActive ? "activeLink" : "link")}
-                to="profile"
-            >
-                Profile
-            </NavLink>
-            <NavLink
-                className={({ isActive }) => (isActive ? "activeLink" : "link")}
-                to="create"
-            >
-                Create Challenge
-            </NavLink>
-            <NavLink
-                className={({ isActive }) => (isActive ? "activeLink" : "link")}
                 to="challenge"
             >
                 Challenge
@@ -42,9 +30,9 @@ const Menu = () => {
             </NavLink>
             <NavLink
                 className={({ isActive }) => (isActive ? "activeLink" : "link")}
-                to="friends"
+                to="logout"
             >
-                Friends
+                Logout
             </NavLink>
         </nav>
     );
