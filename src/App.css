@@ -5,8 +5,21 @@
     font-size: 30px;
     margin: 0px;
 }
+.content {
+    margin: 5%;
+}
+.centerAlign {
+    text-align: center;
+}
 .banner {
     background-color: #f5dd90;
+}
+.font {
+    font-family: "Montserrat", sans-serif;
+    color: #586ba4;
+}
+.signInImg {
+    height: 500px;
 }
 .activeLink {
     background-color: darkslategray;
@@ -25,10 +38,10 @@
     display: flex;
     justify-content: space-around;
 }
-.incompleteProject {
+.bgSalmon {
     background-color: darksalmon;
 }
-.completeProject {
+.bgSeaGreen {
     background-color: darkseagreen;
 }
 .incompleteProject,
