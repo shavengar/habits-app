@@ -1,28 +1,23 @@
-.activeLink {
-    background-color: darkslategray;
-    color: white;
+.noTextDecor {
+  text-decoration: none;
+  color: white;
 }
-.link {
-    color: darkslategray;
-}
-.links,
-.activeLink {
-    border: 1px solid black;
-    height: 10px;
+.header {
+  color: #575d90;
 }
 .projects {
-    flex-direction: column;
-    display: flex;
-    justify-content: space-around;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
 }
 .incompleteProject {
-    background-color: darksalmon;
+  background-color: darksalmon;
 }
 .completeProject {
-    background-color: darkseagreen;
+  background-color: darkseagreen;
 }
 .incompleteProject,
 .completeProject {
-    flex-basis: 50%;
-    height: 50px;
+  flex-basis: 50%;
+  height: 50px;
 }
