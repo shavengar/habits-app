@@ -5,6 +5,49 @@
 .header {
   color: #575d90;
 }
+.centerAlign {
+  align-items: center;
+}
+.displayFlex {
+  display: flex;
+}
+.justifyCenter {
+  justify-content: center;
+}
+.justifyEven {
+  justify-content: space-evenly;
+}
+.column {
+  flex-direction: column;
+}
+.accentColor {
+  background-color: #ffe299;
+}
+.entryPage {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  min-height: 94vh;
+  min-width: 100%;
+}
+.entryContainer {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.entryFunctionality {
+  position: relative;
+  width: 35%;
+  min-height: 300px;
+  padding: 30px;
+  margin-right: -200px;
+}
+.entryImg {
+  width: 65%;
+  height: 700px;
+  object-fit: cover;
+}
+
 .projects {
   flex-direction: column;
   display: flex;
