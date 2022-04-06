@@ -14,7 +14,6 @@ import {
   ListItemIcon,
   ListItemText,
   Divider,
-  Typography,
 } from "@mui/material";
 import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
@@ -31,18 +30,7 @@ const Menu = ({ user }) => {
           <AppBar position="static">
             <Box display="flex" juytifyContent="center" alignItems="center">
               <Toolbar>
-                <ButtonGroup color="secondary" variant="contained">
-                  <Button>
-                    <NavLink to="register" className="noTextDecor">
-                      REGISTER
-                    </NavLink>
-                  </Button>
-                  <Button>
-                    <NavLink to="login" className="noTextDecor">
-                      LOGIN
-                    </NavLink>
-                  </Button>
-                </ButtonGroup>
+                <h2 className="textColor">Van Gogh Get Your Work Done</h2>
               </Toolbar>
             </Box>
           </AppBar>
