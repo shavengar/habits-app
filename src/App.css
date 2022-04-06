@@ -23,6 +23,9 @@
 .accentColor {
   background-color: #ffe299;
 }
+.borderRadius {
+  border-radius: 8px;
+}
 .entryPage {
   padding: 0;
   margin: 0;
