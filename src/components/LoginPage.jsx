@@ -10,13 +10,14 @@ import {
   AlertTitle,
   Button,
   TextField,
+  Divider,
 } from "@mui/material";
 
 const LoginPage = ({ setUser }) => {
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
   const [requirements, setRequirements] = useState(false);
-  const [inUse, setInUse] = useState(false);
+  const [invalid, setInvalid] = useState(false);
   const { login } = useAPI();
   let navigate = useNavigate();
 
@@ -34,9 +35,10 @@ const LoginPage = ({ setUser }) => {
     const res = await login(username, password);
     if (!res.data.success) {
       console.log(res.data.error);
+      setInvalid(true);
     } else {
       setRequirements(false);
-      setInUse(false);
+      setInvalid(false);
       setUser(res.data.data);
       navigate("/challenge");
     }
@@ -98,14 +100,23 @@ const LoginPage = ({ setUser }) => {
                 </Typography>
               </Alert>
             )}
-            {inUse && (
+            {invalid && (
               <Alert severity="error">
                 <AlertTitle>Error</AlertTitle>
                 <Typography sx={{ fontWeight: 700, fontSize: 14 }}>
-                  Username already in use.
+                  Invalid username or password.
                 </Typography>
               </Alert>
             )}
+            <Divider>OR</Divider>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => navigate("/register")}
+              sx={{ mt: 2, display: "flex", size: "large" }}
+            >
+              REGISTER
+            </Button>
           </div>
         </div>
         <img className="entryImg borderRadius" src={vangogh} />

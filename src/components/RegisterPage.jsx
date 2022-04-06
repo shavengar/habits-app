@@ -8,6 +8,7 @@ import {
   AlertTitle,
   Button,
   TextField,
+  Divider,
 } from "@mui/material";
 
 const RegisterPage = () => {
@@ -103,6 +104,15 @@ const RegisterPage = () => {
                 </Typography>
               </Alert>
             )}
+            <Divider>OR</Divider>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => navigate("/login")}
+              sx={{ mt: 2, display: "flex", size: "large" }}
+            >
+              LOGIN
+            </Button>
           </div>
         </div>
         <img className="entryImg borderRadius" src={vangogh} />
