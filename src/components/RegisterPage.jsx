@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAPI from "../hooks/useAPI";
+import vangogh from "../shared/vangogh.png";
 import {
   Typography,
   Alert,
@@ -104,6 +105,7 @@ const RegisterPage = () => {
             )}
           </div>
         </div>
+        <img className="entryImg borderRadius" src={vangogh} />
       </div>
     </section>
   );
