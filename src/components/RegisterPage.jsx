@@ -44,7 +44,7 @@ const RegisterPage = () => {
       <div className="entryContainer displayFlex justifyCenter centerAlign">
         <div className="entryFunctionality accentColor borderRadius displayFlex justifyCenter centerAlign">
           <div className="accentColor displayFlex justifyCenter column">
-            <h2 className="accentColor">Register:</h2>
+            <h2 className="textColor">Register:</h2>
             <TextField
               id="createUsername"
               label="Set Username"
