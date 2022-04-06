@@ -11,7 +11,7 @@ const cookieJWTExtractor = (req) => {
 
 const jwtOptions = {
   secretOrKey: process.env.SECRET_KEY,
-  jwtFormRequest: cookieJWTExtractor,
+  jwtFromRequest: cookieJWTExtractor,
 };
 
 passport.use(
