@@ -16,7 +16,7 @@ router.post("/login", validate, (req, res) => {
   login(res, req.body.username, req.body.password);
 });
 
-router.put("/signup", validate, (req, res) => {
+router.put("/register", validate, (req, res) => {
   signup(res, req.body.username, req.body.password);
 });
 
