@@ -30,7 +30,7 @@ export default function useAPI() {
   const register = useCallback(
     async (username, password) => {
       return await makeAPICall({
-        url: "api/users/signup",
+        url: "api/users/register",
         method: "put",
         data: { username, password },
       });
