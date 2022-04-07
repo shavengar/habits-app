@@ -115,7 +115,7 @@ const LoginPage = ({ setUser }) => {
               onClick={() => navigate("/register")}
               sx={{ mt: 2, display: "flex", size: "large" }}
             >
-              REGISTER
+              CREATE NEW ACCOUNT
             </Button>
           </div>
         </div>

@@ -104,14 +104,14 @@ const RegisterPage = () => {
                 </Typography>
               </Alert>
             )}
-            <Divider>OR</Divider>
+            <Divider />
             <Button
               variant="contained"
               color="secondary"
               onClick={() => navigate("/login")}
               sx={{ mt: 2, display: "flex", size: "large" }}
             >
-              LOGIN
+              HAVE AN ACCOUNT?
             </Button>
           </div>
         </div>
