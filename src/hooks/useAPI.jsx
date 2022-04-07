@@ -92,12 +92,12 @@ export default function useAPI() {
     [makeAPICall]
   );
 
-  const getArtByHabitId = useCallback(
-    async (userHabits) => {
+  const getArtByUserId = useCallback(
+    async (user_id) => {
       return await makeAPICall({
-        url: "api/art/",
-        method: "post",
-        data: userHabits,
+        url: `api/art/${user_id}`,
+        method: "get",
+        data: { user_id },
       });
     },
     [makeAPICall]
@@ -111,6 +111,6 @@ export default function useAPI() {
     markComplete,
     getHabitsByUserId,
     deleteArt,
-    getArtByHabitId,
+    getArtByUserId,
   };
 }
