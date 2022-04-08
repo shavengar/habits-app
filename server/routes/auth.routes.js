@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/verify", authenticate, (req, res) => {
   return res.send({
-    data: { username: req.user, username },
+    data: { username: req.user.username },
     success: true,
     error: null,
   });
