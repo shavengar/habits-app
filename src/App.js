@@ -11,7 +11,6 @@ import Menu from "./components/Menu";
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/RegisterPage";
 import ChallengePage from "./components/ChallengePage";
-import HistoryPage from "./components/HistoryPage";
 import MuseumPage from "./components/MuseumPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useEffect } from "react";
@@ -76,14 +75,6 @@ function App({ user, setProjects, setArtCollection }) {
           element={
             <ProtectedRoute isPrivate={true}>
               <ChallengePage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/history"
-          element={
-            <ProtectedRoute isPrivate={true}>
-              <HistoryPage />
             </ProtectedRoute>
           }
         />

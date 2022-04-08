@@ -50,7 +50,7 @@ const Menu = ({ user }) => {
                             <ListItemIcon>
                               <AddCircleOutlineIcon />
                             </ListItemIcon>
-                            <ListItemText>CHALLENGE</ListItemText>
+                            <ListItemText>PROJECTS</ListItemText>
                           </ListItem>
                         </NavLink>
                         <NavLink
@@ -63,18 +63,6 @@ const Menu = ({ user }) => {
                               <AccountBalanceIcon />
                             </ListItemIcon>
                             <ListItemText>MUSEUM</ListItemText>
-                          </ListItem>
-                        </NavLink>
-                        <NavLink
-                          to="history"
-                          className="noTextDecor"
-                          onClick={() => setDrawerOpen(false)}
-                        >
-                          <ListItem button>
-                            <ListItemIcon>
-                              <PlaylistAddCheckIcon />
-                            </ListItemIcon>
-                            <ListItemText>HISTORY</ListItemText>
                           </ListItem>
                         </NavLink>
                         <Divider />

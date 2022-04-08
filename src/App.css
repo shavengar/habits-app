@@ -73,8 +73,3 @@ body {
   background-color: #575d90;
   color: #ffe299;
 }
-.incomplete,
-.complete {
-  flex-basis: 50%;
-  height: 50px;
-}
