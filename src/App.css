@@ -2,8 +2,11 @@
   text-decoration: none;
   color: white;
 }
-.header {
+.textColor {
   color: #575d90;
+}
+body {
+  background-color: #d9dbf1;
 }
 .centerAlign {
   align-items: center;
@@ -50,20 +53,28 @@
   height: 700px;
   object-fit: cover;
 }
+.projectLayout {
+  padding: 20px;
+  text-align: center;
+  display: flex;
+}
 
 .projects {
   flex-direction: column;
   display: flex;
   justify-content: space-around;
+  text-align: center;
 }
-.incompleteProject {
-  background-color: darksalmon;
+.complete {
+  background-color: #ffe299;
+  color: #575d90;
 }
-.completeProject {
-  background-color: darkseagreen;
+.incomplete {
+  background-color: #575d90;
+  color: #ffe299;
 }
-.incompleteProject,
-.completeProject {
+.incomplete,
+.complete {
   flex-basis: 50%;
   height: 50px;
 }
