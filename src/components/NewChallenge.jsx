@@ -32,11 +32,13 @@ const NewChallenge = ({ addProject, user }) => {
       <br />
       <input id="projectLabel" type="text" ref={titleInput} />
       <br />
+      <br />
       <label>Deadline:</label>
       <DatePicker
         selected={projectDate}
         onChange={(date) => setProjectDate(date)}
       />
+      <br />
       <br />
       <button
         onClick={() => {
