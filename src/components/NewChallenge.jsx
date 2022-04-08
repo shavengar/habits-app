@@ -6,7 +6,7 @@ import { addProject } from "../redux/actions";
 import { connect } from "react-redux";
 import useAPI from "../hooks/useAPI";
 
-const NewChallenge = ({ addProject, user }) => {
+const NewChallenge = ({ addProject, user, projects }) => {
   const { addHabit } = useAPI();
   const titleInput = useRef(null);
   const [projectDate, setProjectDate] = useState(new Date());
@@ -18,12 +18,10 @@ const NewChallenge = ({ addProject, user }) => {
       completed: false,
     };
     const res = await addHabit({ ...project, user_id: user.id });
-    if (!res.data.success) {
-      console.log(res.data.error);
-    } else {
+    if (res.data.success) {
       addProject(res.data.data);
     }
-  }, []);
+  }, [addProject, addHabit]);
 
   return (
     <div>
@@ -54,7 +52,7 @@ const NewChallenge = ({ addProject, user }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { user: state.user };
+  return { user: state.user, projects: state.challenge.projects };
 };
 const mapDispatchToProps = { addProject };
 
