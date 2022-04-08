@@ -17,10 +17,10 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { useEffect } from "react";
 import { setArtCollection } from "./redux/actions/art.actions";
 import { setProjects } from "./redux/actions/challenge.actions";
+import { setUser } from "./redux/actions";
 
 function App({ user, setProjects, setArtCollection }) {
-  const { getHabitsByUserId } = useAPI();
-  const { getArtByHabitId } = useAPI();
+  const { getHabitsByUserId, getArtByUserId, verify } = useAPI();
   useEffect(() => {
     const loadUserInfo = async () => {
       if (user) {
@@ -29,8 +29,7 @@ function App({ user, setProjects, setArtCollection }) {
           return console.log(user.data.error);
         } else {
           setProjects(res.data.data);
-          const userHabits = res.data.data.map((habit) => habit.id);
-          const userArt = await getArtByHabitId(userHabits);
+          const userArt = await getArtByUserId(user.id);
           if (!userArt.data.success) {
             console.log(userArt.data.error);
           } else {
@@ -41,6 +40,17 @@ function App({ user, setProjects, setArtCollection }) {
     };
     loadUserInfo();
   }, [user]);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const res = await verify();
+      if (res.data.success) {
+        setUser(res.data.data);
+      }
+    };
+    checkUser();
+  }, []);
+
   return (
     <Router>
       <Menu />
