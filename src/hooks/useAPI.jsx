@@ -38,6 +38,13 @@ export default function useAPI() {
     [makeAPICall]
   );
 
+  const verify = useCallback(async () => {
+    return await makeAPICall({
+      url: "api/users/verify",
+      method: "get",
+    });
+  }, [makeAPICall]);
+
   const addHabit = useCallback(
     async (habit) => {
       return await makeAPICall({
@@ -106,6 +113,7 @@ export default function useAPI() {
   return {
     login,
     register,
+    verify,
     addHabit,
     removeHabit,
     markComplete,
