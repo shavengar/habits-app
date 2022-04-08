@@ -48,7 +48,11 @@ const Menu = ({ user }) => {
           >
             <Box width=" 250px">
               <List>
-                <NavLink to="challenge" className="noTextDecor">
+                <NavLink
+                  to="challenge"
+                  className="noTextDecor"
+                  onClick={() => setDrawerOpen(false)}
+                >
                   <ListItem button>
                     <ListItemIcon>
                       <AddCircleOutlineIcon />
@@ -56,7 +60,11 @@ const Menu = ({ user }) => {
                     <ListItemText>CHALLENGE</ListItemText>
                   </ListItem>
                 </NavLink>
-                <NavLink to="museum" className="noTextDecor">
+                <NavLink
+                  to="museum"
+                  className="noTextDecor"
+                  onClick={() => setDrawerOpen(false)}
+                >
                   <ListItem button>
                     <ListItemIcon>
                       <AccountBalanceIcon />
@@ -64,7 +72,11 @@ const Menu = ({ user }) => {
                     <ListItemText>MUSEUM</ListItemText>
                   </ListItem>
                 </NavLink>
-                <NavLink to="history" className="noTextDecor">
+                <NavLink
+                  to="history"
+                  className="noTextDecor"
+                  onClick={() => setDrawerOpen(false)}
+                >
                   <ListItem button>
                     <ListItemIcon>
                       <PlaylistAddCheckIcon />
@@ -73,7 +85,11 @@ const Menu = ({ user }) => {
                   </ListItem>
                 </NavLink>
                 <Divider />
-                <NavLink to="login" className="noTextDecor">
+                <NavLink
+                  to="login"
+                  className="noTextDecor"
+                  onClick={() => setDrawerOpen(false)}
+                >
                   <ListItem button>
                     <ListItemIcon>
                       <LogoutIcon />
