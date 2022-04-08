@@ -1,7 +1,7 @@
 import React from "react";
 import Divider from "@mui/material/Divider";
 
-const ChallengeDisplay = ({ project, markCompleted }) => {
+const ChallengeDisplay = ({ project, markCompleted, removeProject }) => {
   return (
     <div className="projects">
       {project.completed ? (
@@ -12,7 +12,7 @@ const ChallengeDisplay = ({ project, markCompleted }) => {
           <input
             type="checkbox"
             onChange={() => {
-              markCompleted(project.id);
+              removeProject(project.id);
             }}
           />
         </div>
