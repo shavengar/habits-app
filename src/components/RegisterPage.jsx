@@ -1,7 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setUser } from "../redux/actions";
 import useAPI from "../hooks/useAPI";
 import vangogh from "../shared/vangogh.png";
 import {
@@ -13,15 +11,15 @@ import {
   Divider,
 } from "@mui/material";
 
-const LoginPage = ({ setUser }) => {
+const RegisterPage = () => {
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
   const [requirements, setRequirements] = useState(false);
-  const [invalid, setInvalid] = useState(false);
-  const { login } = useAPI();
-  let navigate = useNavigate();
+  const [inUse, setInUse] = useState(false);
+  const { register } = useAPI();
+  const navigate = useNavigate();
 
-  const handleLogin = useCallback(async () => {
+  const handleRegister = useCallback(async () => {
     const username = usernameRef.current.value;
     const password = passwordRef.current.value;
     if (
@@ -32,15 +30,13 @@ const LoginPage = ({ setUser }) => {
     ) {
       return setRequirements(true);
     }
-    const res = await login(username, password);
+    const res = await register(username, password);
     if (!res.data.success) {
-      console.log(res.data.error);
-      setInvalid(true);
+      setInUse(true);
     } else {
       setRequirements(false);
-      setInvalid(false);
-      setUser(res.data.data);
-      navigate("/challenge");
+      setInUse(false);
+      navigate("/login");
     }
   }, []);
 
@@ -49,18 +45,18 @@ const LoginPage = ({ setUser }) => {
       <div className="entryContainer displayFlex justifyCenter centerAlign">
         <div className="entryFunctionality accentColor borderRadius displayFlex justifyCenter centerAlign">
           <div className="accentColor displayFlex justifyCenter column">
-            <h2 className="textColor">Login:</h2>
+            <h2 className="textColor">Register:</h2>
             <TextField
-              id="enterUsername"
-              label="Username"
+              id="createUsername"
+              label="Set Username"
               variant="outlined"
               color="secondary"
               inputRef={usernameRef}
               sx={{ mb: 2 }}
             />
             <TextField
-              id="enterPassword"
-              label="Password"
+              id="createPassword"
+              label="Set Password"
               variant="outlined"
               color="secondary"
               type="password"
@@ -71,11 +67,11 @@ const LoginPage = ({ setUser }) => {
               variant="contained"
               color="secondary"
               onClick={() => {
-                handleLogin();
+                handleRegister();
               }}
               sx={{ mb: 2, display: "flex", size: "large" }}
             >
-              LOGIN
+              REGISTER
             </Button>
             {requirements && (
               <Alert severity="info" sx={{ mb: 2 }}>
@@ -100,22 +96,22 @@ const LoginPage = ({ setUser }) => {
                 </Typography>
               </Alert>
             )}
-            {invalid && (
+            {inUse && (
               <Alert severity="error">
                 <AlertTitle>Error</AlertTitle>
                 <Typography sx={{ fontWeight: 700, fontSize: 14 }}>
-                  Invalid username or password.
+                  Username already in use.
                 </Typography>
               </Alert>
             )}
-            <Divider>OR</Divider>
+            <Divider />
             <Button
               variant="contained"
               color="secondary"
-              onClick={() => navigate("/register")}
+              onClick={() => navigate("/login")}
               sx={{ mt: 2, display: "flex", size: "large" }}
             >
-              CREATE NEW ACCOUNT
+              HAVE AN ACCOUNT?
             </Button>
           </div>
         </div>
@@ -125,10 +121,4 @@ const LoginPage = ({ setUser }) => {
   );
 };
 
-const mapStateToProps = () => {
-  return {};
-};
-
-const mapDispatchToProps = { setUser };
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default RegisterPage;

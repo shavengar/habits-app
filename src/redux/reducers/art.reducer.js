@@ -1,4 +1,4 @@
-import { ADD_ART, REMOVE_ART, CLEAR_ART } from "../actions";
+import { ADD_ART, REMOVE_ART, CLEAR_ART, SET_ART_COLLECTION } from "../actions";
 
 const initialState = {
     artCollection: [],
@@ -23,6 +23,8 @@ const artReducer = (state = initialState, action) => {
                 ...state,
                 artCollection: [],
             };
+        case SET_ART_COLLECTION:
+            return { ...state, artCollection: action.artCollection };
         default:
             return state;
     }
