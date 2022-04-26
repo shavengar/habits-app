@@ -3,7 +3,7 @@ import {
   REMOVE_PROJECT,
   ADD_COMPLETED,
   SET_PROJECTS,
-  REMOVE_COMPLETED,
+  SET_COMPLETE,
 } from "../actions";
 
 const initialState = {
@@ -22,6 +22,9 @@ const challengeReducer = (state = initialState, action) => {
       return {
         ...state,
         projects: state.projects.filter((project) => project.id !== action.id),
+        completedProjects: state.completedProjects.filter(
+          (project) => project.id !== action.id
+        ),
       };
     case ADD_COMPLETED:
       return {
@@ -31,15 +34,10 @@ const challengeReducer = (state = initialState, action) => {
         ),
         completedProjects: [...state.completedProjects, action.project],
       };
-    case REMOVE_COMPLETED:
-      return {
-        ...state,
-        completedProjects: state.completedProjects.filter(
-          (project) => project.id !== action.id
-        ),
-      };
     case SET_PROJECTS:
       return { ...state, projects: action.projects };
+    case SET_COMPLETE:
+      return { ...state, completedProjects: action.completed };
     default:
       return state;
   }
