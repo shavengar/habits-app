@@ -15,10 +15,10 @@ import MuseumPage from "./components/MuseumPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useEffect } from "react";
 import { setArtCollection } from "./redux/actions/art.actions";
-import { setProjects } from "./redux/actions/challenge.actions";
+import { setProjects, setComplete } from "./redux/actions/challenge.actions";
 import { setUser } from "./redux/actions";
 
-function App({ user, setProjects, setArtCollection }) {
+function App({ user, setProjects, setComplete, setArtCollection }) {
   const { getHabitsByUserId, getArtByUserId, verify } = useAPI();
   useEffect(() => {
     const loadUserInfo = async () => {
@@ -28,6 +28,9 @@ function App({ user, setProjects, setArtCollection }) {
           return console.log(user.data.error);
         } else {
           setProjects(res.data.data);
+          setComplete(
+            res.data.data.filter((project) => project.completed === 1)
+          );
           const userArt = await getArtByUserId(user.id);
           if (!userArt.data.success) {
             console.log(userArt.data.error);
@@ -101,6 +104,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   setArtCollection,
   setProjects,
+  setComplete,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
