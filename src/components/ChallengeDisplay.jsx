@@ -24,7 +24,7 @@ const ChallengeDisplay = ({ project, markCompleted, removeProject }) => {
           <input
             type="checkbox"
             onChange={() => {
-              markCompleted(project.id);
+              markCompleted(project);
             }}
           />
         </div>

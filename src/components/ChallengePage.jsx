@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import { connect } from "react-redux";
 import { addCompleted, addArt, removeProject } from "../redux/actions";
 import ChallengeDisplay from "./ChallengeDisplay";
@@ -6,14 +6,24 @@ import useAPI from "../hooks/useAPI";
 import NewChallenge from "./NewChallenge";
 import { Grid, Box } from "@mui/material";
 
-const ChallengePage = ({ projects, addCompleted, addArt, removeProject }) => {
+const ChallengePage = ({
+  projects,
+  completedProjects,
+  addCompleted,
+  addArt,
+  removeProject,
+}) => {
   const { markComplete, removeHabit } = useAPI();
-  let completedProjects = projects.filter((val) => val.completed === 1);
-  let incompleteProjects = projects.filter((val) => val.completed === 0);
+  let incompleteProjects = useMemo(
+    () => projects.filter((val) => !val.completed),
+    [projects]
+  );
+  console.log(completedProjects);
 
   const markCompleted = useCallback(
     async (project) => {
       const res = await markComplete(project);
+      project.completed = 1;
       if (!res.data.success) {
         console.log(res.data.error);
       } else {
@@ -21,9 +31,15 @@ const ChallengePage = ({ projects, addCompleted, addArt, removeProject }) => {
         addArt(res.data.data);
       }
     },
-    [markComplete, addCompleted, addArt]
+    [
+      addCompleted,
+      addArt,
+      markComplete,
+      incompleteProjects,
+      completedProjects,
+      projects,
+    ]
   );
-
   const removeProj = useCallback(
     async (id) => {
       const res = await removeHabit(id);
@@ -31,7 +47,7 @@ const ChallengePage = ({ projects, addCompleted, addArt, removeProject }) => {
         removeProject(id);
       }
     },
-    [removeHabit, removeProject]
+    [removeHabit, removeProject, projects]
   );
   return (
     <Grid container rowSpacing={2} columnSpacing={2} className="projectLayout">
@@ -71,6 +87,7 @@ const ChallengePage = ({ projects, addCompleted, addArt, removeProject }) => {
 const mapStateToProps = (state) => {
   return {
     projects: state.challenge.projects,
+    completedProjects: state.challenge.completedProjects,
   };
 };
 const mapDispatchToProps = {
