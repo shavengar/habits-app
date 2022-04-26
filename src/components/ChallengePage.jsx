@@ -18,7 +18,6 @@ const ChallengePage = ({
     () => projects.filter((val) => !val.completed),
     [projects]
   );
-  console.log(completedProjects);
 
   const markCompleted = useCallback(
     async (project) => {
