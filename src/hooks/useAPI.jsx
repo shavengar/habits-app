@@ -68,11 +68,11 @@ export default function useAPI() {
   );
 
   const markComplete = useCallback(
-    async (id) => {
+    async (habit) => {
       return await makeAPICall({
-        url: `api/habits/complete/${id}`,
+        url: `api/habits/complete/${habit.id}`,
         method: "patch",
-        data: { id },
+        data: habit,
       });
     },
     [makeAPICall]
