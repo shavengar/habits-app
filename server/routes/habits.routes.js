@@ -25,7 +25,7 @@ router.delete("/remove/:id", authenticate, (req, res) => {
   removeHabit(res, req.params.id, req.user.id);
 });
 
-router.patch("/complete/:id", authenticate, (req, res) => {
+router.patch("/complete/:habit.id", authenticate, (req, res) => {
   markComplete(res, req.params.id);
 });
 
